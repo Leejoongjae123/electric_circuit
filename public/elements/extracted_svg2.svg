@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="2015.0 1180.0 140.0 140.0" xmlns="http://www.w3.org/2000/svg">
+ <g style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+  <path d="M137.5,75L12.5,12.5L12.5,137.5L137.5,75Z" fill="#ffffff" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2025,1175)">
+  </path>
+  <path d="M20.241317,49.30424L20.241317,51.00004L36.397536,51.00004L36.397536,49.30424L20.241317,49.30424" fill="#3b4449" stroke="none" style="" transform="matrix(1,0,0,1,2025,1175)">
+  </path>
+  <path d="M29.136487,91.78334L27.440701,91.78334L27.440701,99.15232L20.133404,99.15232L20.133404,100.84812L27.440701,100.84812L27.440701,108.21702L29.136487,108.21702L29.136487,100.84812L36.443785,100.84812L36.443785,99.15232L29.136487,99.15232L29.136487,91.78334" fill="#3b4449" stroke="none" style="" transform="matrix(1,0,0,1,2025,1175)">
+  </path>
+  <path d="M150,75L137.5,75" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2025,1175)">
+  </path>
+  <path d="M0,100L12.5,100" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2025,1175)">
+  </path>
+  <path d="M12.5,50L0,50" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2025,1175)">
+  </path>
+  <path d="M75,106.5L75,125" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2025,1175)">
+  </path>
+  <path d="M75,25L75,43.5" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2025,1175)">
+  </path>
+  <text fill="#3b4449" font='10px "Arial"' font-size="16px" font-weight="bold" stroke="none" style="text-anchor: start; font: bold 16px Arial;" text-anchor="start" transform="matrix(1,0,0,1,2062.5,1250)" x="0" y="0">
+   <tspan dy="-2.3999999999999995">
+    OA2
+   </tspan>
+   <tspan dy="19.2" x="0">
+    TL081
+   </tspan>
+  </text>
+  <circle cx="2025" cy="1225" fill="#999999" opacity="0" r="5" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  </circle>
+  <circle cx="2025" cy="1275" fill="#999999" opacity="0" r="5" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  </circle>
+  <circle cx="2175" cy="1250" fill="#999999" opacity="0" r="5" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  </circle>
+  <circle cx="2100" cy="1200" fill="#999999" opacity="0" r="5" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  </circle>
+  <circle cx="2100" cy="1300" fill="#999999" opacity="0" r="5" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  </circle>
+ </g>
+</svg>

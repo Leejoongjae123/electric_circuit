@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="1955.0 1230.0 140.0 140.0" xmlns="http://www.w3.org/2000/svg">
+ <g style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+  <path d="M25,64.06172C40.625333,67.18682,40.625333,79.68702,25,82.81202" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2000,1250)">
+  </path>
+  <path d="M25,64.06172C9.3746668,60.93652,9.3746668,70.31182,25,67.18682" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2000,1250)">
+  </path>
+  <path d="M25,17.18572C40.625333,20.31078,40.625333,32.81104,25,35.93611" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2000,1250)">
+  </path>
+  <path d="M25,32.81104C40.625333,35.93611,40.625333,48.43642,25,51.56152" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2000,1250)">
+  </path>
+  <path d="M25,48.43642C40.625333,51.56152,40.625333,64.06172,25,67.18682" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2000,1250)">
+  </path>
+  <path d="M25,32.81104C9.3746668,29.68599,9.3746668,39.06117,25,35.93611" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2000,1250)">
+  </path>
+  <path d="M25,48.43642C9.3746668,45.31131,9.3746668,54.68652,25,51.56152" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2000,1250)">
+  </path>
+  <path d="M25,100L25,82.81202" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2000,1250)">
+  </path>
+  <path d="M25,0L25,17.18572" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;" transform="matrix(1,0,0,1,2000,1250)">
+  </path>
+  <path d="M12.038952,15.038952L37.961048,15.038952L37.961048,84.961048L12.038952,84.961048Z" fill="#ffffff" opacity="0" stroke="#ffffff" stroke-width="1.07790375" style="opacity: 0;" transform="matrix(1,0,0,1,2000,1250)">
+  </path>
+  <text fill="#3b4449" font='10px "Arial"' font-size="16px" font-weight="bold" stroke="none" style="text-anchor: start; font: bold 16px Arial;" text-anchor="start" transform="matrix(1,0,0,1,2043.75,1300)" x="0" y="0">
+   <tspan dy="-2.3999999999999995">
+    L1
+   </tspan>
+   <tspan dy="19.2" x="0">
+    1 µH
+   </tspan>
+  </text>
+  <circle cx="2025" cy="1250" fill="#999999" opacity="0" r="5" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  </circle>
+  <circle cx="2025" cy="1350" fill="#999999" opacity="0" r="5" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  </circle>
+ </g>
+</svg>
