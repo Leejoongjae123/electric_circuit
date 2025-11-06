@@ -25,6 +25,8 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
         return data.properties.inductance 
           ? `${data.properties.inductance * 1000000}µH` 
           : '인덕터';
+      case 'opamp':
+        return data.properties.model || 'Op-Amp';
       default:
         return '';
     }

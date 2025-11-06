@@ -39,6 +39,15 @@ const componentTemplates: ComponentTemplate[] = [
       label: 'L1',
     },
   },
+  {
+    type: 'opamp',
+    label: 'Op-Amp',
+    icon: '△',
+    defaultProperties: {
+      model: 'TL081',
+      label: 'OA1',
+    },
+  },
 ];
 
 export default function ComponentSidebar() {
@@ -69,6 +78,7 @@ export default function ComponentSidebar() {
                 {template.type === 'voltage_source' && `${template.defaultProperties.voltage}V`}
                 {template.type === 'capacitor' && `${template.defaultProperties.capacitance}F`}
                 {template.type === 'inductor' && `${template.defaultProperties.inductance! * 1000000}µH`}
+                {template.type === 'opamp' && template.defaultProperties.model}
               </div>
             </div>
           </div>
