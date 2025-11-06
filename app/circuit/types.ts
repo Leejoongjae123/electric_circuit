@@ -14,6 +14,7 @@ export interface ComponentProperties {
 export interface CircuitNodeData {
   type: ComponentType;
   properties: ComponentProperties;
+  connectedHandles?: string[]; // 연결된 핸들 ID 목록
 }
 
 export type CircuitNode = Node<CircuitNodeData>;

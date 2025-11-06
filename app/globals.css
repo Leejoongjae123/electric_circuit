@@ -24,3 +24,14 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ReactFlow edge가 Handle 중심까지 도달하도록 설정 */
+.react-flow__edge-path {
+  stroke-linecap: round;
+}
+
+/* Handle을 완전히 투명하게 */
+.react-flow__handle {
+  opacity: 0 !important;
+  pointer-events: all !important;
+}
