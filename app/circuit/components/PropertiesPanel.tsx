@@ -36,6 +36,8 @@ function PropertiesPanelContent({
         return '커패시터 속성';
       case 'inductor':
         return '인덕터 속성';
+      case 'opamp':
+        return 'Op-Amp 속성';
       default:
         return '속성';
     }
@@ -167,6 +169,29 @@ function PropertiesPanelContent({
             />
             <p className="mt-1 text-xs text-gray-500">
               예: 0.000001 = 1μH, 0.001 = 1mH
+            </p>
+          </div>
+        )}
+
+        {selectedNode.data.type === 'opamp' && (
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              모델명
+            </label>
+            <input
+              type="text"
+              value={properties.model || ''}
+              onChange={(e) =>
+                setProperties({
+                  ...properties,
+                  model: e.target.value,
+                })
+              }
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="TL081"
+            />
+            <p className="mt-1 text-xs text-gray-500">
+              예: TL081, LM358, OP07
             </p>
           </div>
         )}

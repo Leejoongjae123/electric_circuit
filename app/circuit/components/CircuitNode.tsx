@@ -142,6 +142,42 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
           </svg>
         );
         
+      case 'opamp':
+        return (
+          <svg width="160" height="160" viewBox="-5 -5 160 160" style={{ overflow: 'visible' }}>
+            {/* 삼각형 본체 */}
+            <path d="M137.5,75L12.5,12.5L12.5,137.5L137.5,75Z" fill="white" stroke={strokeColor} strokeWidth="2" />
+            
+            {/* - 기호 (왼쪽 상단 입력) */}
+            <path d="M20.24,49.30L20.24,51.00L36.40,51.00L36.40,49.30L20.24,49.30" fill={strokeColor} />
+            
+            {/* + 기호 (왼쪽 하단 입력) */}
+            <path d="M29.14,91.78L27.44,91.78L27.44,99.15L20.13,99.15L20.13,100.85L27.44,100.85L27.44,108.22L29.14,108.22L29.14,100.85L36.44,100.85L36.44,99.15L29.14,99.15L29.14,91.78" fill={strokeColor} />
+            
+            {/* 연결선 */}
+            <line x1="150" y1="75" x2="137.5" y2="75" stroke={strokeColor} strokeWidth="2" />
+            <line x1="0" y1="100" x2="12.5" y2="100" stroke={strokeColor} strokeWidth="2" />
+            <line x1="12.5" y1="50" x2="0" y2="50" stroke={strokeColor} strokeWidth="2" />
+            <line x1="75" y1="106.5" x2="75" y2="125" stroke={strokeColor} strokeWidth="2" />
+            <line x1="75" y1="25" x2="75" y2="43.5" stroke={strokeColor} strokeWidth="2" />
+            
+            {/* 라벨 */}
+            <text x="37.5" y="75" textAnchor="start" fontSize="12" fill={strokeColor} fontWeight="bold">
+              {data.properties.label || 'OA'}
+            </text>
+            <text x="37.5" y="90" textAnchor="start" fontSize="10" fill={strokeColor}>
+              {label}
+            </text>
+            
+            {/* 연결 포인트 (circle) - 5개 */}
+            <circle cx="0" cy="50" r="4" fill={strokeColor} style={{ pointerEvents: 'none' }} />
+            <circle cx="0" cy="100" r="4" fill={strokeColor} style={{ pointerEvents: 'none' }} />
+            <circle cx="150" cy="75" r="4" fill={strokeColor} style={{ pointerEvents: 'none' }} />
+            <circle cx="75" cy="25" r="4" fill={strokeColor} style={{ pointerEvents: 'none' }} />
+            <circle cx="75" cy="125" r="4" fill={strokeColor} style={{ pointerEvents: 'none' }} />
+          </svg>
+        );
+        
       default:
         return null;
     }
@@ -182,6 +218,20 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
         return {
           top: { x: 45, y: 5 },
           bottom: { x: 45, y: 105 },
+        };
+      case 'opamp':
+        // SVG: width=160, height=160, viewBox="-5 -5 160 160"
+        // circle: cx=0,cy=50 -> 화면: (5, 55) - 왼쪽 상단 (-)
+        // circle: cx=0,cy=100 -> 화면: (5, 105) - 왼쪽 하단 (+)
+        // circle: cx=150,cy=75 -> 화면: (155, 80) - 오른쪽 출력
+        // circle: cx=75,cy=25 -> 화면: (80, 30) - 상단 전원 (V+)
+        // circle: cx=75,cy=125 -> 화면: (80, 130) - 하단 전원 (V-)
+        return {
+          'in-minus': { x: 5, y: 55 },
+          'in-plus': { x: 5, y: 105 },
+          'out': { x: 155, y: 80 },
+          'v-plus': { x: 80, y: 30 },
+          'v-minus': { x: 80, y: 130 },
         };
       default:
         return {};
@@ -266,6 +316,107 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
           style={{ 
             left: `${handles.bottom.x}px`, 
             top: `${handles.bottom.y}px`,
+            width: '10px',
+            height: '10px',
+            background: 'transparent',
+            border: 'none',
+            transform: 'translate(-50%, -50%)',
+            cursor: 'crosshair',
+          }}
+        />
+      )}
+      
+      {/* Op-amp 전용 Handle들 */}
+      {handles['in-minus'] && (
+        <Handle
+          type="source"
+          position={Position.Left}
+          id="in-minus"
+          isConnectable={true}
+          className="!absolute"
+          style={{ 
+            left: `${handles['in-minus'].x}px`, 
+            top: `${handles['in-minus'].y}px`,
+            width: '10px',
+            height: '10px',
+            background: 'transparent',
+            border: 'none',
+            transform: 'translate(-50%, -50%)',
+            cursor: 'crosshair',
+          }}
+        />
+      )}
+      
+      {handles['in-plus'] && (
+        <Handle
+          type="source"
+          position={Position.Left}
+          id="in-plus"
+          isConnectable={true}
+          className="!absolute"
+          style={{ 
+            left: `${handles['in-plus'].x}px`, 
+            top: `${handles['in-plus'].y}px`,
+            width: '10px',
+            height: '10px',
+            background: 'transparent',
+            border: 'none',
+            transform: 'translate(-50%, -50%)',
+            cursor: 'crosshair',
+          }}
+        />
+      )}
+      
+      {handles['out'] && (
+        <Handle
+          type="source"
+          position={Position.Right}
+          id="out"
+          isConnectable={true}
+          className="!absolute"
+          style={{ 
+            left: `${handles['out'].x}px`, 
+            top: `${handles['out'].y}px`,
+            width: '10px',
+            height: '10px',
+            background: 'transparent',
+            border: 'none',
+            transform: 'translate(-50%, -50%)',
+            cursor: 'crosshair',
+          }}
+        />
+      )}
+      
+      {handles['v-plus'] && (
+        <Handle
+          type="source"
+          position={Position.Top}
+          id="v-plus"
+          isConnectable={true}
+          className="!absolute"
+          style={{ 
+            left: `${handles['v-plus'].x}px`, 
+            top: `${handles['v-plus'].y}px`,
+            width: '10px',
+            height: '10px',
+            background: 'transparent',
+            border: 'none',
+            transform: 'translate(-50%, -50%)',
+            cursor: 'crosshair',
+          }}
+        />
+      )}
+      
+      {handles['v-minus'] && (
+        <Handle
+          type="source"
+          position={Position.Bottom}
+          id="v-minus"
+          isConnectable={true}
+          className="!absolute"
+          style={{ 
+            left: `${handles['v-minus'].x}px`, 
+            top: `${handles['v-minus'].y}px`,
             width: '10px',
             height: '10px',
             background: 'transparent',

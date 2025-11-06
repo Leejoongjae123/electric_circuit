@@ -168,6 +168,8 @@ function CircuitCanvasContent() {
                   return '#10b981';
                 case 'inductor':
                   return '#8b5cf6';
+                case 'opamp':
+                  return '#ec4899';
                 default:
                   return '#6b7280';
               }
