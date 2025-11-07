@@ -191,189 +191,193 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
         );
 
       case "capacitor":
+        // Capacitor.svg 내용을 직접 인라인으로 렌더링하여 텍스트를 동적으로 변경
         return (
-          <svg
-            width="90"
-            height="70"
-            viewBox="-5 -5 90 70"
-            style={{ overflow: "visible" }}
-          >
-            {/* 연결선 */}
-            <line
-              x1="0"
-              y1="30"
-              x2="35"
-              y2="30"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-            <line
-              x1="45"
-              y1="30"
-              x2="80"
-              y2="30"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-
-            {/* 커패시터 판 */}
-            <line
-              x1="35"
-              y1="10"
-              x2="35"
-              y2="50"
-              stroke={strokeColor}
-              strokeWidth="3"
-            />
-            <line
-              x1="45"
-              y1="10"
-              x2="45"
-              y2="50"
-              stroke={strokeColor}
-              strokeWidth="3"
-            />
-
-            {/* 라벨 */}
-            <text
-              x="40"
-              y="8"
-              textAnchor="middle"
-              fontSize="12"
-              fill={strokeColor}
-              fontWeight="bold"
-            >
-              {label}
-            </text>
-
-            {/* 연결 포인트 - 연결되지 않은 경우에만 표시 */}
-            {!isHandleConnected("left") && (
-              <circle
-                cx="0"
-                cy="30"
-                r="4"
-                fill={strokeColor}
-                style={{ pointerEvents: "none" }}
-              />
-            )}
-            {!isHandleConnected("right") && (
-              <circle
-                cx="80"
-                cy="30"
-                r="4"
-                fill={strokeColor}
-                style={{ pointerEvents: "none" }}
-              />
-            )}
-          </svg>
+          <div className="relative" style={{ width: "100px", height: "100px" }}>
+            <svg height="100" viewBox="0 0 100 100" width="100" xmlns="http://www.w3.org/2000/svg">
+              <g>
+                <path 
+                  d="M47.72727272727273,53.4091054545454L47.72727272727273,86.36363636363637" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <path 
+                  d="M47.72727272727273,46.590901818181784L47.72727272727273,13.63636363636363" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <path 
+                  d="M65.9090909090909,46.590901818181784L29.54545454545454,46.590901818181784" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <path 
+                  d="M65.9090909090909,53.4091054545454L29.54545454545454,53.4091054545454" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <text 
+                  fill={strokeColor}
+                  fontSize="11.64px" 
+                  fontWeight="bold" 
+                  textAnchor="start" 
+                  x="70.45454545454547" 
+                  y="50.0"
+                >
+                  <tspan dy="-1.7454545454545456">
+                    {data.properties.label || "C"}
+                  </tspan>
+                  <tspan dy="13.963636363636367" x="70.45454545454547">
+                    {data.properties.capacitance ? `${data.properties.capacitance * 1000000} µF` : "1 µF"}
+                  </tspan>
+                </text>
+                {/* 연결 포인트 - 연결되지 않은 경우에만 표시 */}
+                {!isHandleConnected("top") && (
+                  <circle 
+                    cx="47.72727272727273" 
+                    cy="13.63636363636363" 
+                    fill={strokeColor}
+                    r="3.6363636363636376"
+                  />
+                )}
+                {!isHandleConnected("bottom") && (
+                  <circle 
+                    cx="47.72727272727273" 
+                    cy="86.36363636363637" 
+                    fill={strokeColor}
+                    r="3.6363636363636376"
+                  />
+                )}
+              </g>
+            </svg>
+          </div>
         );
 
       case "inductor":
+        // Inductor.svg 내용을 직접 인라인으로 렌더링하여 텍스트를 동적으로 변경
         return (
-          <svg
-            width="90"
-            height="130"
-            viewBox="-5 -5 90 130"
-            style={{ overflow: "visible" }}
-          >
-            {/* 상단 연결선 */}
-            <line
-              x1="40"
-              y1="0"
-              x2="40"
-              y2="17.19"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-
-            {/* 코일 - 오른쪽 */}
-            <path
-              d="M40,17.19C55.63,20.31,55.63,32.81,40,35.94"
-              fill="none"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-            <path
-              d="M40,32.81C55.63,35.94,55.63,48.44,40,51.56"
-              fill="none"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-            <path
-              d="M40,48.44C55.63,51.56,55.63,64.06,40,67.19"
-              fill="none"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-            <path
-              d="M40,64.06C55.63,67.19,55.63,79.69,40,82.81"
-              fill="none"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-
-            {/* 코일 - 왼쪽 */}
-            <path
-              d="M40,32.81C24.37,29.69,24.37,39.06,40,35.94"
-              fill="none"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-            <path
-              d="M40,48.44C24.37,45.31,24.37,54.69,40,51.56"
-              fill="none"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-            <path
-              d="M40,64.06C24.37,60.94,24.37,70.31,40,67.19"
-              fill="none"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-
-            {/* 하단 연결선 */}
-            <line
-              x1="40"
-              y1="82.81"
-              x2="40"
-              y2="100"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-
-            {/* 라벨 */}
-            <text
-              x="60"
-              y="55"
-              textAnchor="start"
-              fontSize="12"
-              fill={strokeColor}
-              fontWeight="bold"
-            >
-              {label}
-            </text>
-
-            {/* 연결 포인트 - 연결되지 않은 경우에만 표시 */}
-            {!isHandleConnected("top") && (
-              <circle
-                cx="40"
-                cy="0"
-                r="4"
-                fill={strokeColor}
-                style={{ pointerEvents: "none" }}
-              />
-            )}
-            {!isHandleConnected("bottom") && (
-              <circle
-                cx="40"
-                cy="100"
-                r="4"
-                fill={strokeColor}
-                style={{ pointerEvents: "none" }}
-              />
-            )}
-          </svg>
+          <div className="relative" style={{ width: "100px", height: "100px" }}>
+            <svg height="100" viewBox="0 0 100 100" width="100" xmlns="http://www.w3.org/2000/svg">
+              <g>
+                <path 
+                  d="M48.8637575272728,60.226705454545396C60.227636072727435,62.499505454545485,60.227636072727435,71.59055999999993,48.8637575272728,73.8632872727272" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <path 
+                  d="M48.8637575272728,60.226705454545396C37.499878836363564,57.95383272727277,37.499878836363564,64.77223272727275,48.8637575272728,62.499505454545485" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <path 
+                  d="M48.8637575272728,26.135069090908996C60.227636072727435,28.407840000000114,60.227636072727435,37.49893818181815,48.8637575272728,39.771716363636436" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <path 
+                  d="M48.8637575272728,37.49893818181815C60.227636072727435,39.771716363636436,60.227636072727435,48.86285090909087,48.8637575272728,51.13565090909095" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <path 
+                  d="M48.8637575272728,48.86285090909087C60.227636072727435,51.13565090909095,60.227636072727435,60.226705454545396,48.8637575272728,62.499505454545485" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <path 
+                  d="M48.8637575272728,37.49893818181815C37.499878836363564,35.22617454545446,37.499878836363564,42.04448727272729,48.8637575272728,39.771716363636436" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <path 
+                  d="M48.8637575272728,48.86285090909087C37.499878836363564,46.59004363636361,37.499878836363564,53.40837818181822,48.8637575272728,51.13565090909095" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <path 
+                  d="M48.8637575272728,86.36363636363637L48.8637575272728,73.8632872727272" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <path 
+                  d="M48.8637575272728,13.63636363636363L48.8637575272728,26.135069090908996" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <text 
+                  fill={strokeColor}
+                  fontSize="11.64px" 
+                  fontWeight="bold" 
+                  textAnchor="start" 
+                  x="62.50012116363644" 
+                  y="50.0"
+                >
+                  <tspan dy="-1.7454545454545456">
+                    {data.properties.label || "L"}
+                  </tspan>
+                  <tspan dy="13.963636363636367" x="62.50012116363644">
+                    {data.properties.inductance ? `${data.properties.inductance * 1000000} µH` : "1 µH"}
+                  </tspan>
+                </text>
+                {/* 연결 포인트 - 연결되지 않은 경우에만 표시 */}
+                {!isHandleConnected("top") && (
+                  <circle 
+                    cx="48.8637575272728" 
+                    cy="13.63636363636363" 
+                    fill={strokeColor}
+                    r="3.6363636363636376"
+                  />
+                )}
+                {!isHandleConnected("bottom") && (
+                  <circle 
+                    cx="48.8637575272728" 
+                    cy="86.36363636363637" 
+                    fill={strokeColor}
+                    r="3.6363636363636376"
+                  />
+                )}
+              </g>
+            </svg>
+          </div>
         );
 
       case "opamp":
@@ -530,12 +534,10 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
           bottom: { x: 47.909, y: 86.364 },
         };
       case "capacitor":
-        // SVG: width=90, height=70, viewBox="-5 -5 90 70"
-        // circle: cx=0,cy=30 -> 화면: (5, 35)
-        // circle: cx=80,cy=30 -> 화면: (85, 35)
+        // Capacitor.svg: viewBox="0 0 100 100", circle at cx=47.727, cy=13.636 (top), cy=86.364 (bottom)
         return {
-          left: { x: 5, y: 35 },
-          right: { x: 85, y: 35 },
+          top: { x: 47.727, y: 13.636 },
+          bottom: { x: 47.727, y: 86.364 },
         };
       case "voltage_source":
         // SVG: width=90, height=90, viewBox="-5 -5 90 90"
@@ -546,12 +548,10 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
           bottom: { x: 45, y: 85 },
         };
       case "inductor":
-        // SVG: width=90, height=130, viewBox="-5 -5 90 130"
-        // circle: cx=40,cy=0 -> 화면: (45, 5)
-        // circle: cx=40,cy=100 -> 화면: (45, 105)
+        // Inductor.svg: viewBox="0 0 100 100", circle at cx=48.864, cy=13.636 (top), cy=86.364 (bottom)
         return {
-          top: { x: 45, y: 5 },
-          bottom: { x: 45, y: 105 },
+          top: { x: 48.864, y: 13.636 },
+          bottom: { x: 48.864, y: 86.364 },
         };
       case "opamp":
         // SVG: width=160, height=160, viewBox="-5 -5 160 160"

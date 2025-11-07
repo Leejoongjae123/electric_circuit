@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="862.0586162923464 575.4126741563609 42.000213248000136 90.40000000000009" xmlns="http://www.w3.org/2000/svg">
+<svg height="100" viewBox="0 0 100 100" width="100" xmlns="http://www.w3.org/2000/svg">
  <g style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
   <desc>
    Created with Raphaël 2.0.0
   </desc>
   <defs>
   </defs>
-  <path d="M882.0588295403466,629.6121749563611C892.0590426603464,631.6122389563609,892.0590426603464,639.612366956361,882.0588295403466,641.612366956361" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  <path d="M48.8637575272728,60.226705454545396C60.227636072727435,62.499505454545485,60.227636072727435,71.59055999999993,48.8637575272728,73.8632872727272" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
   </path>
-  <path d="M882.0588295403466,629.6121749563611C872.0586162923464,627.6120469563609,872.0586162923464,633.6122389563609,882.0588295403466,631.6122389563609" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  <path d="M48.8637575272728,60.226705454545396C37.499878836363564,57.95383272727277,37.499878836363564,64.77223272727275,48.8637575272728,62.499505454545485" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
   </path>
-  <path d="M882.0588295403466,599.611534956361C892.0590426603464,601.611573356361,892.0590426603464,609.611739756361,882.0588295403466,611.611784556361" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  <path d="M48.8637575272728,26.135069090908996C60.227636072727435,28.407840000000114,60.227636072727435,37.49893818181815,48.8637575272728,39.771716363636436" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
   </path>
-  <path d="M882.0588295403466,609.611739756361C892.0590426603464,611.611784556361,892.0590426603464,619.6119829563611,882.0588295403466,621.6120469563609" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  <path d="M48.8637575272728,37.49893818181815C60.227636072727435,39.771716363636436,60.227636072727435,48.86285090909087,48.8637575272728,51.13565090909095" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
   </path>
-  <path d="M882.0588295403466,619.6119829563611C892.0590426603464,621.6120469563609,892.0590426603464,629.6121749563611,882.0588295403466,631.6122389563609" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  <path d="M48.8637575272728,48.86285090909087C60.227636072727435,51.13565090909095,60.227636072727435,60.226705454545396,48.8637575272728,62.499505454545485" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
   </path>
-  <path d="M882.0588295403466,609.611739756361C872.0586162923464,607.611707756361,872.0586162923464,613.611822956361,882.0588295403466,611.611784556361" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  <path d="M48.8637575272728,37.49893818181815C37.499878836363564,35.22617454545446,37.499878836363564,42.04448727272729,48.8637575272728,39.771716363636436" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
   </path>
-  <path d="M882.0588295403466,619.6119829563611C872.0586162923464,617.611912556361,872.0586162923464,623.6120469563609,882.0588295403466,621.6120469563609" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  <path d="M48.8637575272728,48.86285090909087C37.499878836363564,46.59004363636361,37.499878836363564,53.40837818181822,48.8637575272728,51.13565090909095" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
   </path>
-  <path d="M882.0588295403466,652.612674156361L882.0588295403466,641.612366956361" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  <path d="M48.8637575272728,86.36363636363637L48.8637575272728,73.8632872727272" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
   </path>
-  <path d="M882.0588295403466,588.612674156361L882.0588295403466,599.611534956361" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  <path d="M48.8637575272728,13.63636363636363L48.8637575272728,26.135069090908996" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
   </path>
-  <path d="M873.7637588203465,598.237603436361L890.3539002603466,598.237603436361L890.3539002603466,642.9877448763611L873.7637588203465,642.9877448763611Z" fill="#ffffff" opacity="0" stroke="#ffffff" stroke-width="1.07790375" style="opacity: 0;">
+  <path d="M39.43754080000005,24.573783272727397L58.289974254545555,24.573783272727397L58.289974254545555,75.42621672727287L39.43754080000005,75.42621672727287Z" fill="#ffffff" opacity="0" stroke="#ffffff" stroke-width="1.07790375" style="opacity: 0;">
   </path>
-  <text fill="#3b4449" font='10px "Arial"' font-size="16px" font-weight="bold" stroke="none" style="text-anchor: start; font: bold 16px Arial;" text-anchor="start" x="894.0588295403466" y="620.612674156361">
-   <tspan dy="-2.3999999999999995">
-    L2
+  <text fill="#3b4449" font='10px "Arial"' font-size="11.64px" font-weight="bold" stroke="none" style="text-anchor: start; font: bold 16px Arial;" text-anchor="start" x="62.50012116363644" y="50.0">
+   <tspan dy="-1.7454545454545456">
+    L4
    </tspan>
-   <tspan dy="19.2" x="894.0588295403466">
+   <tspan dy="13.963636363636367" x="62.50012116363644">
     1 µH
    </tspan>
   </text>
-  <circle cx="882.0588295403466" cy="588.612674156361" fill="#999999" opacity="0" r="3.2" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  <circle cx="48.8637575272728" cy="13.63636363636363" fill="#999999" opacity="0" r="3.6363636363636376" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
   </circle>
-  <circle cx="882.0588295403466" cy="652.612674156361" fill="#999999" opacity="0" r="3.2" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  <circle cx="48.8637575272728" cy="86.36363636363637" fill="#999999" opacity="0" r="3.6363636363636376" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
   </circle>
  </g>
 </svg>
