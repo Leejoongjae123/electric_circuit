@@ -1,6 +1,11 @@
-import { Node, Edge } from 'reactflow';
+import { Node, Edge } from "reactflow";
 
-export type ComponentType = 'resistor' | 'voltage_source' | 'capacitor' | 'inductor' | 'opamp';
+export type ComponentType =
+  | "resistor"
+  | "voltage_source"
+  | "capacitor"
+  | "inductor"
+  | "opamp";
 
 export interface ComponentProperties {
   resistance?: number; // 저항값 (Ω)

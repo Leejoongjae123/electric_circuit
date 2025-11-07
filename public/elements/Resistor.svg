@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg height="100" viewBox="0 0 100 100" width="100" xmlns="http://www.w3.org/2000/svg">
+ <g style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+  <desc>
+   Created with Raphaël 2.0.0
+  </desc>
+  <defs>
+  </defs>
+  <path d="M47.90909090909088,29.545447272727245L47.90909090909088,13.636363636363638" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  </path>
+  <path d="M47.90909090909088,70.45455999999996L47.90909090909088,86.36363636363637" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  </path>
+  <path d="M47.90909090909088,29.545447272727245L39.954548363636235,32.95453818181815L55.863632727272744,39.772712727272804L39.954548363636235,46.59089454545462L55.863632727272744,53.409105454545404L39.954548363636235,60.227287272727224L55.863632727272744,67.04546909090905L47.90909090909088,70.45455999999996" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  </path>
+  <path d="M38.45454545454548,28.181818181818162L57.36363636363627,28.181818181818162L57.36363636363627,71.81818181818187L38.45454545454548,71.81818181818187Z" fill="#ffffff" opacity="0" stroke="#ffffff" style="opacity: 0;">
+  </path>
+  <text fill="#3b4449" font='10px "Arial"' font-size="11.64px" font-weight="bold" stroke="none" style="text-anchor: start; font: bold 16px Arial;" text-anchor="start" x="61.54545454545452" y="50.000000000000014">
+   <tspan dy="-1.7454545454545456">
+    R2
+   </tspan>
+   <tspan dy="13.963636363636367" x="61.54545454545452">
+    100 Ω
+   </tspan>
+  </text>
+  <circle cx="47.90909090909088" cy="13.636363636363638" fill="#999999" opacity="0" r="3.6363636363636376" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  </circle>
+  <circle cx="47.90909090909088" cy="86.36363636363637" fill="#999999" opacity="0" r="3.6363636363636376" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  </circle>
+ </g>
+</svg>

@@ -42,71 +42,70 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
 
     switch (data.type) {
       case "resistor":
+        // Resistor.svg 내용을 직접 인라인으로 렌더링하여 텍스트를 동적으로 변경
         return (
-          <svg
-            width="110"
-            height="70"
-            viewBox="-5 -5 110 70"
-            style={{ overflow: "visible" }}
-          >
-            {/* 연결선 */}
-            <line
-              x1="0"
-              y1="30"
-              x2="20"
-              y2="30"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-            <line
-              x1="80"
-              y1="30"
-              x2="100"
-              y2="30"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-
-            {/* 저항 지그재그 */}
-            <path
-              d="M 20 30 L 25 20 L 35 40 L 45 20 L 55 40 L 65 20 L 75 40 L 80 30"
-              stroke={strokeColor}
-              strokeWidth="2"
-              fill="none"
-            />
-
-            {/* 라벨 */}
-            <text
-              x="50"
-              y="55"
-              textAnchor="middle"
-              fontSize="12"
-              fill={strokeColor}
-              fontWeight="bold"
-            >
-              {label}
-            </text>
-
-            {/* 연결 포인트 - 연결되지 않은 경우에만 표시 */}
-            {!isHandleConnected("left") && (
-              <circle
-                cx="0"
-                cy="30"
-                r="4"
-                fill={strokeColor}
-                style={{ pointerEvents: "none" }}
-              />
-            )}
-            {!isHandleConnected("right") && (
-              <circle
-                cx="100"
-                cy="30"
-                r="4"
-                fill={strokeColor}
-                style={{ pointerEvents: "none" }}
-              />
-            )}
-          </svg>
+          <div className="relative" style={{ width: "100px", height: "100px" }}>
+            <svg height="100" viewBox="0 0 100 100" width="100" xmlns="http://www.w3.org/2000/svg">
+              <g>
+                <path 
+                  d="M47.90909090909088,29.545447272727245L47.90909090909088,13.636363636363638" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <path 
+                  d="M47.90909090909088,70.45455999999996L47.90909090909088,86.36363636363637" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <path 
+                  d="M47.90909090909088,29.545447272727245L39.954548363636235,32.95453818181815L55.863632727272744,39.772712727272804L39.954548363636235,46.59089454545462L55.863632727272744,53.409105454545404L39.954548363636235,60.227287272727224L55.863632727272744,67.04546909090905L47.90909090909088,70.45455999999996" 
+                  fill="none" 
+                  stroke={strokeColor}
+                  strokeLinecap="round" 
+                  strokeMiterlimit="6" 
+                  strokeWidth="2"
+                />
+                <text 
+                  fill={strokeColor}
+                  fontSize="11.64px" 
+                  fontWeight="bold" 
+                  textAnchor="start" 
+                  x="61.54545454545452" 
+                  y="50.000000000000014"
+                >
+                  <tspan dy="-1.7454545454545456">
+                    {data.properties.label || "R"}
+                  </tspan>
+                  <tspan dy="13.963636363636367" x="61.54545454545452">
+                    {data.properties.resistance ? `${data.properties.resistance} Ω` : "100 Ω"}
+                  </tspan>
+                </text>
+                {/* 연결 포인트 - 연결되지 않은 경우에만 표시 */}
+                {!isHandleConnected("top") && (
+                  <circle 
+                    cx="47.90909090909088" 
+                    cy="13.636363636363638" 
+                    fill={strokeColor}
+                    r="3.6363636363636376"
+                  />
+                )}
+                {!isHandleConnected("bottom") && (
+                  <circle 
+                    cx="47.90909090909088" 
+                    cy="86.36363636363637" 
+                    fill={strokeColor}
+                    r="3.6363636363636376"
+                  />
+                )}
+              </g>
+            </svg>
+          </div>
         );
 
       case "voltage_source":
@@ -522,17 +521,13 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
     }
   };
 
-  // SVG viewBox 좌표를 실제 화면 좌표로 변환
-  // viewBox가 -5 -5로 시작하므로, SVG 좌표에 +5를 더해야 실제 화면 좌표
   const getHandlePositions = () => {
     switch (data.type) {
       case "resistor":
-        // SVG: width=110, height=70, viewBox="-5 -5 110 70"
-        // circle: cx=0,cy=30 -> 화면: (0+5, 30+5) = (5, 35)
-        // circle: cx=100,cy=30 -> 화면: (100+5, 30+5) = (105, 35)
+        // Resistor.svg: viewBox="0 0 100 100", circle at cx=47.909, cy=13.636 (top), cy=86.364 (bottom)
         return {
-          left: { x: 5, y: 35 },
-          right: { x: 105, y: 35 },
+          top: { x: 47.909, y: 13.636 },
+          bottom: { x: 47.909, y: 86.364 },
         };
       case "capacitor":
         // SVG: width=90, height=70, viewBox="-5 -5 90 70"

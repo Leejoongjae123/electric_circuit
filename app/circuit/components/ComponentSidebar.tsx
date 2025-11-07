@@ -3,51 +3,16 @@
 import { ComponentTemplate } from '../types';
 import { useState } from 'react';
 import { Search } from 'lucide-react';
+import ResistorIcon from './ResistorIcon';
 
 const componentTemplates: ComponentTemplate[] = [
   {
     type: 'resistor',
     label: 'Resistor',
-    icon: '🔲',
+    icon: '/elements/Resistor.svg',
     defaultProperties: {
       resistance: 100,
       label: 'R1',
-    },
-  },
-  {
-    type: 'voltage_source',
-    label: 'Voltage Source',
-    icon: '⚡',
-    defaultProperties: {
-      voltage: 5,
-      label: 'V1',
-    },
-  },
-  {
-    type: 'capacitor',
-    label: 'Capacitor',
-    icon: '⚊⚊',
-    defaultProperties: {
-      capacitance: 0.001,
-      label: 'C1',
-    },
-  },
-  {
-    type: 'inductor',
-    label: 'Inductor',
-    icon: '🔄',
-    defaultProperties: {
-      inductance: 0.000001,
-      label: 'L1',
-    },
-  },
-  {
-    type: 'opamp',
-    label: 'Op-Amp',
-    icon: '△',
-    defaultProperties: {
-      model: 'TL081',
-      label: 'OA1',
     },
   },
 ];
@@ -85,16 +50,16 @@ export default function ComponentSidebar() {
       </div>
 
       <div className="flex-1 overflow-y-auto">
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 gap-4">
           {filteredTemplates.map((template) => (
             <div
               key={template.type}
               draggable
               onDragStart={(e) => onDragStart(e, template)}
-              className="aspect-square flex items-center justify-center p-2 bg-gray-50 rounded-lg border-2 border-gray-200 cursor-move hover:bg-gray-100 hover:border-blue-400 transition-all"
+              className="flex items-center justify-center p-4 bg-gray-50 rounded-lg border-2 border-gray-200 cursor-move hover:bg-gray-100 hover:border-blue-400 transition-all group"
             >
-              <div className="text-center">
-                <div className="font-medium text-gray-900 text-sm">{template.label}</div>
+              <div className="flex items-center justify-center">
+                {template.type === 'resistor' && <ResistorIcon />}
               </div>
             </div>
           ))}

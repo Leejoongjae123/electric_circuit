@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { CircuitNode, ComponentProperties } from '../types';
+import { useState } from "react";
+import { CircuitNode, ComponentProperties } from "../types";
 
 interface PropertiesPanelProps {
   selectedNode: CircuitNode | null;
@@ -28,18 +28,18 @@ function PropertiesPanelContent({
 
   const getTitle = () => {
     switch (selectedNode.data.type) {
-      case 'resistor':
-        return '저항 속성';
-      case 'voltage_source':
-        return '전원 속성';
-      case 'capacitor':
-        return '커패시터 속성';
-      case 'inductor':
-        return '인덕터 속성';
-      case 'opamp':
-        return 'Op-Amp 속성';
+      case "resistor":
+        return "저항 속성";
+      case "voltage_source":
+        return "전원 속성";
+      case "capacitor":
+        return "커패시터 속성";
+      case "inductor":
+        return "인덕터 속성";
+      case "opamp":
+        return "Op-Amp 속성";
       default:
-        return '속성';
+        return "속성";
     }
   };
 
@@ -74,7 +74,7 @@ function PropertiesPanelContent({
           </label>
           <input
             type="text"
-            value={properties.label || ''}
+            value={properties.label || ""}
             onChange={(e) =>
               setProperties({ ...properties, label: e.target.value })
             }
@@ -83,7 +83,7 @@ function PropertiesPanelContent({
           />
         </div>
 
-        {selectedNode.data.type === 'resistor' && (
+        {selectedNode.data.type === "resistor" && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               저항값 (Ω)
@@ -91,7 +91,7 @@ function PropertiesPanelContent({
             <input
               type="number"
               step="0.01"
-              value={properties.resistance || ''}
+              value={properties.resistance || ""}
               onChange={(e) =>
                 setProperties({
                   ...properties,
@@ -104,7 +104,7 @@ function PropertiesPanelContent({
           </div>
         )}
 
-        {selectedNode.data.type === 'voltage_source' && (
+        {selectedNode.data.type === "voltage_source" && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               전압 (V)
@@ -112,7 +112,7 @@ function PropertiesPanelContent({
             <input
               type="number"
               step="0.01"
-              value={properties.voltage || ''}
+              value={properties.voltage || ""}
               onChange={(e) =>
                 setProperties({
                   ...properties,
@@ -125,7 +125,7 @@ function PropertiesPanelContent({
           </div>
         )}
 
-        {selectedNode.data.type === 'capacitor' && (
+        {selectedNode.data.type === "capacitor" && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               커패시턴스 (F)
@@ -133,7 +133,7 @@ function PropertiesPanelContent({
             <input
               type="number"
               step="0.000001"
-              value={properties.capacitance || ''}
+              value={properties.capacitance || ""}
               onChange={(e) =>
                 setProperties({
                   ...properties,
@@ -149,7 +149,7 @@ function PropertiesPanelContent({
           </div>
         )}
 
-        {selectedNode.data.type === 'inductor' && (
+        {selectedNode.data.type === "inductor" && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               인덕턴스 (H)
@@ -157,7 +157,7 @@ function PropertiesPanelContent({
             <input
               type="number"
               step="0.000001"
-              value={properties.inductance || ''}
+              value={properties.inductance || ""}
               onChange={(e) =>
                 setProperties({
                   ...properties,
@@ -173,14 +173,14 @@ function PropertiesPanelContent({
           </div>
         )}
 
-        {selectedNode.data.type === 'opamp' && (
+        {selectedNode.data.type === "opamp" && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               모델명
             </label>
             <input
               type="text"
-              value={properties.model || ''}
+              value={properties.model || ""}
               onChange={(e) =>
                 setProperties({
                   ...properties,
@@ -190,16 +190,14 @@ function PropertiesPanelContent({
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="TL081"
             />
-            <p className="mt-1 text-xs text-gray-500">
-              예: TL081, LM358, OP07
-            </p>
+            <p className="mt-1 text-xs text-gray-500">예: TL081, LM358, OP07</p>
           </div>
         )}
 
         <div className="flex gap-2 pt-2">
           <button
             type="submit"
-            className="flex-1 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors font-medium"
+            className="flex-1 bg-black text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors font-medium"
           >
             적용
           </button>
@@ -218,7 +216,7 @@ function PropertiesPanelContent({
 
 export default function PropertiesPanel(props: PropertiesPanelProps) {
   if (!props.selectedNode) return null;
-  
+
   // key prop으로 selectedNode 변경 시 컴포넌트 리셋
   return <PropertiesPanelContent key={props.selectedNode.id} {...props} />;
 }

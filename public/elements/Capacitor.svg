@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="801.2232334613796 413.87714233398447 87.5 152.0" xmlns="http://www.w3.org/2000/svg">
+ <g style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+  <path d="M841.2232334613796,495.5021663339844L841.2232334613796,549.8771423339845" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  </path>
+  <path d="M841.2232334613796,484.2521303339845L841.2232334613796,429.87714233398447" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  </path>
+  <path d="M871.2232334613796,484.2521303339845L811.2232334613796,484.2521303339845" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  </path>
+  <path d="M871.2232334613796,495.5021663339844L811.2232334613796,495.5021663339844" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  </path>
+  <path d="M823.2232334613796,441.87714233398447L859.2232334613796,441.87714233398447L859.2232334613796,537.8771423339845L823.2232334613796,537.8771423339845Z" fill="#ffffff" opacity="0" stroke="#ffffff" style="opacity: 0;">
+  </path>
+  <text fill="#3b4449" font='10px "Arial"' font-size="16px" font-weight="bold" stroke="none" style="text-anchor: start; font: bold 16px Arial;" text-anchor="start" x="878.7232334613796" y="489.87714233398447">
+   <tspan dy="-2.3999999999999995">
+    C3
+   </tspan>
+   <tspan dy="19.2" x="878.7232334613796">
+    1 µF
+   </tspan>
+  </text>
+  <circle cx="841.2232334613796" cy="429.87714233398447" fill="#999999" opacity="0" r="6.0" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  </circle>
+  <circle cx="841.2232334613796" cy="549.8771423339845" fill="#999999" opacity="0" r="6.0" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  </circle>
+ </g>
+</svg>
