@@ -580,47 +580,7 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
 
       {/* Handle 연결점 - circle 위치와 정확히 일치 */}
       {/* source만 사용하여 양방향 연결 (ConnectionMode.Loose 필요) */}
-      {handles.left && (
-        <Handle
-          type="source"
-          position={Position.Left}
-          id="left"
-          isConnectable={true}
-          className="!absolute"
-          style={{
-            left: `${handles.left.x}px`,
-            top: `${handles.left.y}px`,
-            width: "10px",
-            height: "10px",
-            background: "transparent",
-            border: "none",
-            transform: "translate(-50%, -50%)",
-            cursor: "crosshair",
-          }}
-        />
-      )}
-
-      {handles.right && (
-        <Handle
-          type="source"
-          position={Position.Right}
-          id="right"
-          isConnectable={true}
-          className="!absolute"
-          style={{
-            left: `${handles.right.x}px`,
-            top: `${handles.right.y}px`,
-            width: "10px",
-            height: "10px",
-            background: "transparent",
-            border: "none",
-            transform: "translate(-50%, -50%)",
-            cursor: "crosshair",
-          }}
-        />
-      )}
-
-      {handles.top && (
+      {"top" in handles && handles.top && (
         <Handle
           type="source"
           position={Position.Top}
@@ -640,7 +600,7 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
         />
       )}
 
-      {handles.bottom && (
+      {"bottom" in handles && handles.bottom && (
         <Handle
           type="source"
           position={Position.Bottom}
@@ -661,7 +621,7 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
       )}
 
       {/* Op-amp 전용 Handle들 */}
-      {handles["in-minus"] && (
+      {"in-minus" in handles && handles["in-minus"] && (
         <Handle
           type="source"
           position={Position.Left}
@@ -681,7 +641,7 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
         />
       )}
 
-      {handles["in-plus"] && (
+      {"in-plus" in handles && handles["in-plus"] && (
         <Handle
           type="source"
           position={Position.Left}
@@ -701,7 +661,7 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
         />
       )}
 
-      {handles["out"] && (
+      {"out" in handles && handles["out"] && (
         <Handle
           type="source"
           position={Position.Right}
@@ -721,7 +681,7 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
         />
       )}
 
-      {handles["v-plus"] && (
+      {"v-plus" in handles && handles["v-plus"] && (
         <Handle
           type="source"
           position={Position.Top}
@@ -741,7 +701,7 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
         />
       )}
 
-      {handles["v-minus"] && (
+      {"v-minus" in handles && handles["v-minus"] && (
         <Handle
           type="source"
           position={Position.Bottom}
