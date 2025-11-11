@@ -51,8 +51,8 @@ function CircuitCanvasContent() {
   const [nodeIdCounter, setNodeIdCounter] = useState(1);
   
   // Undo/Redo를 위한 히스토리 관리
-  const [history, setHistory] = useState<Array<{ nodes: CircuitNodeType[], edges: CircuitEdge[] }>>([]);
-  const [historyIndex, setHistoryIndex] = useState(-1);
+  const [history, setHistory] = useState<Array<{ nodes: CircuitNodeType[], edges: CircuitEdge[] }>>([{ nodes: [], edges: [] }]);
+  const [historyIndex, setHistoryIndex] = useState(0);
 
   // 각 노드의 연결된 핸들 정보를 계산
   const getConnectedHandles = useCallback(() => {
@@ -218,7 +218,13 @@ function CircuitCanvasContent() {
       if (event.key === 'Delete' || event.key === 'Backspace') {
         // 선택된 노드 삭제
         if (selectedNode) {
-          saveToHistory();
+          // 삭제 전 현재 상태를 히스토리에 저장
+          const newHistory = history.slice(0, historyIndex + 1);
+          newHistory.push({ nodes: [...nodes], edges: [...edges] });
+          setHistory(newHistory);
+          setHistoryIndex(newHistory.length - 1);
+          
+          // 노드 삭제
           setNodes((nds) => nds.filter((node) => node.id !== selectedNode.id));
           setEdges((eds) => eds.filter((edge) => 
             edge.source !== selectedNode.id && edge.target !== selectedNode.id
@@ -229,7 +235,12 @@ function CircuitCanvasContent() {
           // 선택된 엣지 삭제 (ReactFlow의 기본 동작)
           const selectedEdges = edges.filter((edge) => edge.selected);
           if (selectedEdges.length > 0) {
-            saveToHistory();
+            // 삭제 전 현재 상태를 히스토리에 저장
+            const newHistory = history.slice(0, historyIndex + 1);
+            newHistory.push({ nodes: [...nodes], edges: [...edges] });
+            setHistory(newHistory);
+            setHistoryIndex(newHistory.length - 1);
+            
             setEdges((eds) => eds.filter((edge) => !edge.selected));
             event.preventDefault();
           }
@@ -241,7 +252,7 @@ function CircuitCanvasContent() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [selectedNode, edges, setNodes, setEdges, saveToHistory, undo]);
+  }, [selectedNode, edges, nodes, history, historyIndex, setNodes, setEdges, setHistory, setHistoryIndex, undo]);
 
   return (
     <div className="flex h-screen w-full">

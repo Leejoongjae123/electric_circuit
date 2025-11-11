@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg height="100" viewBox="0 0 100 100" width="100" xmlns="http://www.w3.org/2000/svg">
+ <g style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+  <desc>
+   Created with Raphaël 2.0.0
+  </desc>
+  <defs>
+  </defs>
+  <path d="M65.90909090909092,50.0C65.90909090909092,39.95905454545463,57.76861599999993,31.818181818181813,47.72727272727273,31.818181818181813C37.68589890909094,31.818181818181813,29.545454545454536,39.95905454545463,29.545454545454536,50.0C29.545454545454536,60.040887272727275,37.68589890909094,68.18181818181819,47.72727272727273,68.18181818181819C57.76861599999993,68.18181818181819,65.90909090909092,60.040887272727275,65.90909090909092,50.0" fill="#ffffff" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  </path>
+  <path d="M47.72727272727273,13.636363636363622L47.72727272727273,31.818181818181813" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  </path>
+  <path d="M47.72727272727273,86.36363636363637L47.72727272727273,68.18181818181819" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="2" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  </path>
+  <path d="M45.18181818181835,59.04249454545466C46.77273018181833,61.44608727272743,46.77273018181833,62.16717309090914,47.72727272727273,65.77252363636373C48.68181527272743,62.16717309090914,48.68181527272743,61.44608727272743,50.27272727272741,59.04249454545466C48.36363200000002,59.52320509090927,47.09090836363659,59.52320509090927,45.18181818181835,59.04249454545466" fill="#3b4449" stroke="none" style="">
+  </path>
+  <path d="M47.72727272727273,59.47869381818194L47.72727272727273,36.753737454545586" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="1.80241489" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  </path>
+  <path d="M58.636363636363825,46.363687272727326H47.72727272727273V53.63641454545473H36.818181818181934" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="6" stroke-width="10" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  </path>
+  <path d="M58.636363636363825,46.363687272727326H47.72727272727273V53.63641454545473H36.818181818181934" fill="none" stroke="#3b4449" stroke-linecap="round" stroke-miterlimit="6" stroke-width="1.72414" style="stroke-linecap: round; stroke-miterlimit: 6;">
+  </path>
+  <text fill="#3b4449" font='10px "Arial"' font-size="11.64px" font-weight="bold" stroke="none" style="text-anchor: start; font: bold 16px Arial;" text-anchor="start" x="70.45454545454547" y="50.0">
+   <tspan dy="-1.7454545454545458">
+    I1
+   </tspan>
+   <tspan dy="13.96363636363637" x="70.45454545454547">
+    0 s
+   </tspan>
+  </text>
+  <circle cx="47.72727272727273" cy="13.636363636363622" fill="#999999" opacity="0" r="3.636363636363638" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  </circle>
+  <circle cx="47.72727272727273" cy="86.36363636363637" fill="#999999" opacity="0" r="3.636363636363638" stroke="#3b4449" stroke-width="2" style="opacity: 0;">
+  </circle>
+ </g>
+</svg>

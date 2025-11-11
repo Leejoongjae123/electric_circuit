@@ -21,6 +21,8 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
           : "저항";
       case "voltage_source":
         return data.properties.voltage ? `${data.properties.voltage}V` : "전원";
+      case "current_source":
+        return data.properties.current ? `${data.properties.current}A` : "전류원";
       case "capacitor":
         return data.properties.capacitance
           ? `${data.properties.capacitance}F`
@@ -31,6 +33,22 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
           : "인덕터";
       case "opamp":
         return data.properties.model || "Op-Amp";
+      case "ground":
+        return "GND";
+      case "name_node":
+        return data.properties.label || "NODE";
+      case "csv_voltage_source":
+        return data.properties.voltage ? `${data.properties.voltage}V` : "CSV";
+      case "voltage_function_generator":
+        return data.properties.voltage ? `${data.properties.voltage}V` : "FUNC";
+      case "voltage_step":
+        return data.properties.voltage ? `${data.properties.voltage}V` : "STEP";
+      case "current_function_generator":
+        return data.properties.current ? `${data.properties.current}A` : "전류원";
+      case "current_step":
+        return data.properties.current ? `${data.properties.current}A` : "전류원";
+      case "csv_current_source":
+        return data.properties.current ? `${data.properties.current}A` : "전류원";
       default:
         return "";
     }
@@ -45,60 +63,67 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
         // Resistor.svg 내용을 직접 인라인으로 렌더링하여 텍스트를 동적으로 변경
         return (
           <div className="relative" style={{ width: "100px", height: "100px" }}>
-            <svg height="100" viewBox="0 0 100 100" width="100" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              height="100"
+              viewBox="0 0 100 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <g>
-                <path 
-                  d="M47.90909090909088,29.545447272727245L47.90909090909088,13.636363636363638" 
-                  fill="none" 
+                <path
+                  d="M47.90909090909088,29.545447272727245L47.90909090909088,13.636363636363638"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <path 
-                  d="M47.90909090909088,70.45455999999996L47.90909090909088,86.36363636363637" 
-                  fill="none" 
+                <path
+                  d="M47.90909090909088,70.45455999999996L47.90909090909088,86.36363636363637"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <path 
-                  d="M47.90909090909088,29.545447272727245L39.954548363636235,32.95453818181815L55.863632727272744,39.772712727272804L39.954548363636235,46.59089454545462L55.863632727272744,53.409105454545404L39.954548363636235,60.227287272727224L55.863632727272744,67.04546909090905L47.90909090909088,70.45455999999996" 
-                  fill="none" 
+                <path
+                  d="M47.90909090909088,29.545447272727245L39.954548363636235,32.95453818181815L55.863632727272744,39.772712727272804L39.954548363636235,46.59089454545462L55.863632727272744,53.409105454545404L39.954548363636235,60.227287272727224L55.863632727272744,67.04546909090905L47.90909090909088,70.45455999999996"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <text 
+                <text
                   fill={strokeColor}
-                  fontSize="11.64px" 
-                  fontWeight="bold" 
-                  textAnchor="start" 
-                  x="61.54545454545452" 
+                  fontSize="11.64px"
+                  fontWeight="bold"
+                  textAnchor="start"
+                  x="61.54545454545452"
                   y="50.000000000000014"
                 >
                   <tspan dy="-1.7454545454545456">
                     {data.properties.label || "R"}
                   </tspan>
                   <tspan dy="13.963636363636367" x="61.54545454545452">
-                    {data.properties.resistance ? `${data.properties.resistance} Ω` : "100 Ω"}
+                    {data.properties.resistance
+                      ? `${data.properties.resistance} Ω`
+                      : "100 Ω"}
                   </tspan>
                 </text>
                 {/* 연결 포인트 - 연결되지 않은 경우에만 표시 */}
                 {!isHandleConnected("top") && (
-                  <circle 
-                    cx="47.90909090909088" 
-                    cy="13.636363636363638" 
+                  <circle
+                    cx="47.90909090909088"
+                    cy="13.636363636363638"
                     fill={strokeColor}
                     r="3.6363636363636376"
                   />
                 )}
                 {!isHandleConnected("bottom") && (
-                  <circle 
-                    cx="47.90909090909088" 
-                    cy="86.36363636363637" 
+                  <circle
+                    cx="47.90909090909088"
+                    cy="86.36363636363637"
                     fill={strokeColor}
                     r="3.6363636363636376"
                   />
@@ -110,152 +135,246 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
 
       case "voltage_source":
         return (
-          <svg
-            width="90"
-            height="90"
-            viewBox="-5 -5 90 90"
-            style={{ overflow: "visible" }}
-          >
-            {/* 연결선 */}
-            <line
-              x1="40"
-              y1="0"
-              x2="40"
-              y2="15"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-            <line
-              x1="40"
-              y1="65"
-              x2="40"
-              y2="80"
-              stroke={strokeColor}
-              strokeWidth="2"
-            />
-
-            {/* 원 */}
-            <circle
-              cx="40"
-              cy="40"
-              r="25"
-              stroke={strokeColor}
-              strokeWidth="2"
-              fill="white"
-            />
-
-            {/* V 표시 */}
-            <text
-              x="40"
-              y="45"
-              textAnchor="middle"
-              fontSize="20"
-              fill={strokeColor}
-              fontWeight="bold"
+          <div className="relative" style={{ width: "100px", height: "100px" }}>
+            <svg
+              height="100"
+              viewBox="0 0 100 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              V
-            </text>
+              <g>
+                <path
+                  d="M65.909,50C65.909,39.959,57.768,31.818,47.727,31.818C37.686,31.818,29.545,39.959,29.545,50C29.545,60.041,37.686,68.182,47.727,68.182C57.768,68.182,65.909,60.041,65.909,50"
+                  fill="#ffffff"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,13.636L47.727,31.818"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,86.364L47.727,68.182"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M48.34,37.759L47.115,37.759L47.115,43.082L41.836,43.082L41.836,44.307L47.115,44.307L47.115,49.631L48.34,49.631L48.34,44.307L53.619,44.307L53.619,43.082L48.34,43.082L48.34,37.759"
+                  fill={strokeColor}
+                  stroke="none"
+                />
+                <path
+                  d="M41.914,57.559L41.914,58.784L53.586,58.784L53.586,57.559L41.914,57.559"
+                  fill={strokeColor}
+                  stroke="none"
+                />
+                <text
+                  fill={strokeColor}
+                  fontSize="11.64px"
+                  fontWeight="bold"
+                  textAnchor="start"
+                  x="70.455"
+                  y="50"
+                >
+                  <tspan dy="-1.745">
+                    {data.properties.label || "V"}
+                  </tspan>
+                  <tspan dy="13.964" x="70.455">
+                    {data.properties.voltage
+                      ? `${data.properties.voltage} V`
+                      : "5 V"}
+                  </tspan>
+                </text>
+                {/* 연결 포인트 - 연결되지 않은 경우에만 표시 */}
+                {!isHandleConnected("top") && (
+                  <circle
+                    cx="47.727"
+                    cy="13.636"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+                {!isHandleConnected("bottom") && (
+                  <circle
+                    cx="47.727"
+                    cy="86.364"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+              </g>
+            </svg>
+          </div>
+        );
 
-            {/* 라벨 */}
-            <text
-              x="70"
-              y="45"
-              textAnchor="start"
-              fontSize="12"
-              fill={strokeColor}
-              fontWeight="bold"
+      case "current_source":
+        return (
+          <div className="relative" style={{ width: "100px", height: "100px" }}>
+            <svg
+              height="100"
+              viewBox="0 0 100 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              {label}
-            </text>
-
-            {/* 연결 포인트 - 연결되지 않은 경우에만 표시 */}
-            {!isHandleConnected("top") && (
-              <circle
-                cx="40"
-                cy="0"
-                r="4"
-                fill={strokeColor}
-                style={{ pointerEvents: "none" }}
-              />
-            )}
-            {!isHandleConnected("bottom") && (
-              <circle
-                cx="40"
-                cy="80"
-                r="4"
-                fill={strokeColor}
-                style={{ pointerEvents: "none" }}
-              />
-            )}
-          </svg>
+              <g>
+                <path
+                  d="M65.909,50C65.909,39.959,57.768,31.818,47.727,31.818C37.686,31.818,29.545,39.959,29.545,50C29.545,60.041,37.686,68.182,47.727,68.182C57.768,68.182,65.909,60.041,65.909,50"
+                  fill="#ffffff"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,13.636L47.727,31.818"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,86.364L47.727,68.182"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,54.726L47.727,39.134"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="1.493"
+                />
+                <path
+                  d="M44.163,48.935C46.391,53.39,46.391,54.726,47.727,61.409C49.064,54.726,49.064,53.39,51.291,48.935C48.618,49.826,46.836,49.826,44.163,48.935"
+                  fill={strokeColor}
+                  stroke="none"
+                />
+                <text
+                  fill={strokeColor}
+                  fontSize="11.64px"
+                  fontWeight="bold"
+                  textAnchor="start"
+                  x="70.455"
+                  y="50"
+                >
+                  <tspan dy="-1.745">
+                    {data.properties.label || "I"}
+                  </tspan>
+                  <tspan dy="13.964" x="70.455">
+                    {data.properties.current
+                      ? `${data.properties.current} A`
+                      : "1 A"}
+                  </tspan>
+                </text>
+                {/* 연결 포인트 - 연결되지 않은 경우에만 표시 */}
+                {!isHandleConnected("top") && (
+                  <circle
+                    cx="47.727"
+                    cy="13.636"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+                {!isHandleConnected("bottom") && (
+                  <circle
+                    cx="47.727"
+                    cy="86.364"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+              </g>
+            </svg>
+          </div>
         );
 
       case "capacitor":
         // Capacitor.svg 내용을 직접 인라인으로 렌더링하여 텍스트를 동적으로 변경
         return (
           <div className="relative" style={{ width: "100px", height: "100px" }}>
-            <svg height="100" viewBox="0 0 100 100" width="100" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              height="100"
+              viewBox="0 0 100 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <g>
-                <path 
-                  d="M47.72727272727273,53.4091054545454L47.72727272727273,86.36363636363637" 
-                  fill="none" 
+                <path
+                  d="M47.72727272727273,53.4091054545454L47.72727272727273,86.36363636363637"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <path 
-                  d="M47.72727272727273,46.590901818181784L47.72727272727273,13.63636363636363" 
-                  fill="none" 
+                <path
+                  d="M47.72727272727273,46.590901818181784L47.72727272727273,13.63636363636363"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <path 
-                  d="M65.9090909090909,46.590901818181784L29.54545454545454,46.590901818181784" 
-                  fill="none" 
+                <path
+                  d="M65.9090909090909,46.590901818181784L29.54545454545454,46.590901818181784"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <path 
-                  d="M65.9090909090909,53.4091054545454L29.54545454545454,53.4091054545454" 
-                  fill="none" 
+                <path
+                  d="M65.9090909090909,53.4091054545454L29.54545454545454,53.4091054545454"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <text 
+                <text
                   fill={strokeColor}
-                  fontSize="11.64px" 
-                  fontWeight="bold" 
-                  textAnchor="start" 
-                  x="70.45454545454547" 
+                  fontSize="11.64px"
+                  fontWeight="bold"
+                  textAnchor="start"
+                  x="70.45454545454547"
                   y="50.0"
                 >
                   <tspan dy="-1.7454545454545456">
                     {data.properties.label || "C"}
                   </tspan>
                   <tspan dy="13.963636363636367" x="70.45454545454547">
-                    {data.properties.capacitance ? `${data.properties.capacitance * 1000000} µF` : "1 µF"}
+                    {data.properties.capacitance
+                      ? `${data.properties.capacitance * 1000000} µF`
+                      : "1 µF"}
                   </tspan>
                 </text>
                 {/* 연결 포인트 - 연결되지 않은 경우에만 표시 */}
                 {!isHandleConnected("top") && (
-                  <circle 
-                    cx="47.72727272727273" 
-                    cy="13.63636363636363" 
+                  <circle
+                    cx="47.72727272727273"
+                    cy="13.63636363636363"
                     fill={strokeColor}
                     r="3.6363636363636376"
                   />
                 )}
                 {!isHandleConnected("bottom") && (
-                  <circle 
-                    cx="47.72727272727273" 
-                    cy="86.36363636363637" 
+                  <circle
+                    cx="47.72727272727273"
+                    cy="86.36363636363637"
                     fill={strokeColor}
                     r="3.6363636363636376"
                   />
@@ -269,108 +388,115 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
         // Inductor.svg 내용을 직접 인라인으로 렌더링하여 텍스트를 동적으로 변경
         return (
           <div className="relative" style={{ width: "100px", height: "100px" }}>
-            <svg height="100" viewBox="0 0 100 100" width="100" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              height="100"
+              viewBox="0 0 100 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <g>
-                <path 
-                  d="M48.8637575272728,60.226705454545396C60.227636072727435,62.499505454545485,60.227636072727435,71.59055999999993,48.8637575272728,73.8632872727272" 
-                  fill="none" 
+                <path
+                  d="M48.8637575272728,60.226705454545396C60.227636072727435,62.499505454545485,60.227636072727435,71.59055999999993,48.8637575272728,73.8632872727272"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <path 
-                  d="M48.8637575272728,60.226705454545396C37.499878836363564,57.95383272727277,37.499878836363564,64.77223272727275,48.8637575272728,62.499505454545485" 
-                  fill="none" 
+                <path
+                  d="M48.8637575272728,60.226705454545396C37.499878836363564,57.95383272727277,37.499878836363564,64.77223272727275,48.8637575272728,62.499505454545485"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <path 
-                  d="M48.8637575272728,26.135069090908996C60.227636072727435,28.407840000000114,60.227636072727435,37.49893818181815,48.8637575272728,39.771716363636436" 
-                  fill="none" 
+                <path
+                  d="M48.8637575272728,26.135069090908996C60.227636072727435,28.407840000000114,60.227636072727435,37.49893818181815,48.8637575272728,39.771716363636436"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <path 
-                  d="M48.8637575272728,37.49893818181815C60.227636072727435,39.771716363636436,60.227636072727435,48.86285090909087,48.8637575272728,51.13565090909095" 
-                  fill="none" 
+                <path
+                  d="M48.8637575272728,37.49893818181815C60.227636072727435,39.771716363636436,60.227636072727435,48.86285090909087,48.8637575272728,51.13565090909095"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <path 
-                  d="M48.8637575272728,48.86285090909087C60.227636072727435,51.13565090909095,60.227636072727435,60.226705454545396,48.8637575272728,62.499505454545485" 
-                  fill="none" 
+                <path
+                  d="M48.8637575272728,48.86285090909087C60.227636072727435,51.13565090909095,60.227636072727435,60.226705454545396,48.8637575272728,62.499505454545485"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <path 
-                  d="M48.8637575272728,37.49893818181815C37.499878836363564,35.22617454545446,37.499878836363564,42.04448727272729,48.8637575272728,39.771716363636436" 
-                  fill="none" 
+                <path
+                  d="M48.8637575272728,37.49893818181815C37.499878836363564,35.22617454545446,37.499878836363564,42.04448727272729,48.8637575272728,39.771716363636436"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <path 
-                  d="M48.8637575272728,48.86285090909087C37.499878836363564,46.59004363636361,37.499878836363564,53.40837818181822,48.8637575272728,51.13565090909095" 
-                  fill="none" 
+                <path
+                  d="M48.8637575272728,48.86285090909087C37.499878836363564,46.59004363636361,37.499878836363564,53.40837818181822,48.8637575272728,51.13565090909095"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <path 
-                  d="M48.8637575272728,86.36363636363637L48.8637575272728,73.8632872727272" 
-                  fill="none" 
+                <path
+                  d="M48.8637575272728,86.36363636363637L48.8637575272728,73.8632872727272"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <path 
-                  d="M48.8637575272728,13.63636363636363L48.8637575272728,26.135069090908996" 
-                  fill="none" 
+                <path
+                  d="M48.8637575272728,13.63636363636363L48.8637575272728,26.135069090908996"
+                  fill="none"
                   stroke={strokeColor}
-                  strokeLinecap="round" 
-                  strokeMiterlimit="6" 
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
                   strokeWidth="2"
                 />
-                <text 
+                <text
                   fill={strokeColor}
-                  fontSize="11.64px" 
-                  fontWeight="bold" 
-                  textAnchor="start" 
-                  x="62.50012116363644" 
+                  fontSize="11.64px"
+                  fontWeight="bold"
+                  textAnchor="start"
+                  x="62.50012116363644"
                   y="50.0"
                 >
                   <tspan dy="-1.7454545454545456">
                     {data.properties.label || "L"}
                   </tspan>
                   <tspan dy="13.963636363636367" x="62.50012116363644">
-                    {data.properties.inductance ? `${data.properties.inductance * 1000000} µH` : "1 µH"}
+                    {data.properties.inductance
+                      ? `${data.properties.inductance * 1000000} µH`
+                      : "1 µH"}
                   </tspan>
                 </text>
                 {/* 연결 포인트 - 연결되지 않은 경우에만 표시 */}
                 {!isHandleConnected("top") && (
-                  <circle 
-                    cx="48.8637575272728" 
-                    cy="13.63636363636363" 
+                  <circle
+                    cx="48.8637575272728"
+                    cy="13.63636363636363"
                     fill={strokeColor}
                     r="3.6363636363636376"
                   />
                 )}
                 {!isHandleConnected("bottom") && (
-                  <circle 
-                    cx="48.8637575272728" 
-                    cy="86.36363636363637" 
+                  <circle
+                    cx="48.8637575272728"
+                    cy="86.36363636363637"
                     fill={strokeColor}
                     r="3.6363636363636376"
                   />
@@ -520,6 +646,675 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
           </svg>
         );
 
+      case "ground":
+        return (
+          <div className="relative" style={{ width: "100px", height: "100px" }}>
+            <svg
+              height="100"
+              viewBox="0 0 100 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M50,54.444L50,18.889"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M14.444,54.444L50,90L85.556,54.444Z"
+                  fill="#ffffff"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                {/* 연결 포인트 - 연결되지 않은 경우에만 표시 */}
+                {!isHandleConnected("top") && (
+                  <circle
+                    cx="50"
+                    cy="18.889"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+              </g>
+            </svg>
+          </div>
+        );
+
+      case "name_node":
+        return (
+          <div className="relative" style={{ width: "100px", height: "100px" }}>
+            <svg
+              height="100"
+              viewBox="0 0 100 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M15.186,70.226L27.633,54.502L50.151,54.502Z"
+                  fill={strokeColor}
+                  stroke={strokeColor}
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                />
+                <rect
+                  fill="#ffffff"
+                  height="28.877"
+                  r="5"
+                  rx="5"
+                  ry="5"
+                  stroke={strokeColor}
+                  strokeWidth="2"
+                  width="67.553"
+                  x="22.447"
+                  y="25.625"
+                />
+                <text
+                  fill={strokeColor}
+                  fontSize="16.6px"
+                  fontWeight="bold"
+                  textAnchor="start"
+                  x="27.633"
+                  y="41.183"
+                >
+                  <tspan dy="7.468">
+                    {data.properties.label || "NODE"}
+                  </tspan>
+                </text>
+                {/* 연결 포인트 - 연결되지 않은 경우에만 표시 */}
+                {!isHandleConnected("bottom") && (
+                  <circle
+                    cx="15.186"
+                    cy="70.226"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+              </g>
+            </svg>
+          </div>
+        );
+
+      case "csv_voltage_source":
+        return (
+          <div className="relative" style={{ width: "100px", height: "100px" }}>
+            <svg
+              height="100"
+              viewBox="0 0 100 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M65.909,50C65.909,39.959,57.768,31.818,47.727,31.818C37.686,31.818,29.545,39.959,29.545,50C29.545,60.041,37.686,68.182,47.727,68.182C57.768,68.182,65.909,60.041,65.909,50"
+                  fill="#ffffff"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,13.636L47.727,31.818"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,86.364L47.727,68.182"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                {/* + 기호 */}
+                <path
+                  d="M48.181,34.498L47.274,34.498L47.274,38.441L43.364,38.441L43.364,39.348L47.274,39.348L47.274,43.291L48.181,43.291L48.181,39.348L52.091,39.348L52.091,38.441L48.181,38.441L48.181,34.498"
+                  fill={strokeColor}
+                  stroke="none"
+                />
+                {/* - 기호 */}
+                <path
+                  d="M43.421,61.499L43.421,62.407L52.066,62.407L52.066,61.499L43.421,61.499"
+                  fill={strokeColor}
+                  stroke="none"
+                />
+                {/* CSV 텍스트 - 간략화 */}
+                <text
+                  fill={strokeColor}
+                  fontSize="13px"
+                  fontStyle="italic"
+                  fontWeight="bold"
+                  textAnchor="middle"
+                  x="47.727"
+                  y="54"
+                >
+                  CSV
+                </text>
+                <text
+                  fill={strokeColor}
+                  fontSize="11.64px"
+                  fontWeight="bold"
+                  textAnchor="start"
+                  x="70.455"
+                  y="50"
+                >
+                  <tspan dy="-1.745">
+                    {data.properties.label || "V10"}
+                  </tspan>
+                  <tspan dy="13.964" x="70.455">
+                    PWL
+                  </tspan>
+                </text>
+                {!isHandleConnected("top") && (
+                  <circle
+                    cx="47.727"
+                    cy="13.636"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+                {!isHandleConnected("bottom") && (
+                  <circle
+                    cx="47.727"
+                    cy="86.364"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+              </g>
+            </svg>
+          </div>
+        );
+
+      case "voltage_function_generator":
+        return (
+          <div className="relative" style={{ width: "100px", height: "100px" }}>
+            <svg
+              height="100"
+              viewBox="0 0 100 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M65.909,50C65.909,39.959,57.768,31.818,47.727,31.818C37.686,31.818,29.545,39.959,29.545,50C29.545,60.041,37.686,68.182,47.727,68.182C57.768,68.182,65.909,60.041,65.909,50"
+                  fill="#ffffff"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,13.636L47.727,31.818"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,86.364L47.727,68.182"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M56.818,50C47.727,77.273,47.727,22.727,38.636,50"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                {/* + 기호 */}
+                <path
+                  d="M48.181,34.498L47.274,34.498L47.274,38.441L43.364,38.441L43.364,39.348L47.274,39.348L47.274,43.291L48.181,43.291L48.181,39.348L52.091,39.348L52.091,38.441L48.181,38.441L48.181,34.498"
+                  fill={strokeColor}
+                  stroke="none"
+                />
+                {/* - 기호 */}
+                <path
+                  d="M43.421,61.499L43.421,62.407L52.066,62.407L52.066,61.499L43.421,61.499"
+                  fill={strokeColor}
+                  stroke="none"
+                />
+                <text
+                  fill={strokeColor}
+                  fontSize="11.64px"
+                  fontWeight="bold"
+                  textAnchor="start"
+                  x="70.455"
+                  y="50"
+                >
+                  <tspan dy="-8.727">
+                    {data.properties.label || "V6"}
+                  </tspan>
+                  <tspan dy="13.964" x="70.455">
+                    sine
+                  </tspan>
+                  <tspan dy="13.964" x="70.455">
+                    1 kHz
+                  </tspan>
+                </text>
+                {!isHandleConnected("top") && (
+                  <circle
+                    cx="47.727"
+                    cy="13.636"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+                {!isHandleConnected("bottom") && (
+                  <circle
+                    cx="47.727"
+                    cy="86.364"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+              </g>
+            </svg>
+          </div>
+        );
+
+      case "voltage_step":
+        return (
+          <div className="relative" style={{ width: "100px", height: "100px" }}>
+            <svg
+              height="100"
+              viewBox="0 0 100 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M65.909,50C65.909,39.959,57.768,31.818,47.727,31.818C37.686,31.818,29.545,39.959,29.545,50C29.545,60.041,37.686,68.182,47.727,68.182C57.768,68.182,65.909,60.041,65.909,50"
+                  fill="#ffffff"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,13.636L47.727,31.818"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,86.364L47.727,68.182"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                {/* + 기호 */}
+                <path
+                  d="M48.181,34.498L47.274,34.498L47.274,38.441L43.364,38.441L43.364,39.348L47.274,39.348L47.274,43.291L48.181,43.291L48.181,39.348L52.091,39.348L52.091,38.441L48.181,38.441L48.181,34.498"
+                  fill={strokeColor}
+                  stroke="none"
+                />
+                {/* - 기호 */}
+                <path
+                  d="M43.421,61.499L43.421,62.407L52.066,62.407L52.066,61.499L43.421,61.499"
+                  fill={strokeColor}
+                  stroke="none"
+                />
+                {/* Step 파형 */}
+                <path
+                  d="M58.636,46.364H47.727V53.636H36.818"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="1.724"
+                />
+                <text
+                  fill={strokeColor}
+                  fontSize="11.64px"
+                  fontWeight="bold"
+                  textAnchor="start"
+                  x="70.455"
+                  y="50"
+                >
+                  <tspan dy="-1.745">
+                    {data.properties.label || "V3"}
+                  </tspan>
+                  <tspan dy="13.964" x="70.455">
+                    0 s
+                  </tspan>
+                </text>
+                {!isHandleConnected("top") && (
+                  <circle
+                    cx="47.727"
+                    cy="13.636"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+                {!isHandleConnected("bottom") && (
+                  <circle
+                    cx="47.727"
+                    cy="86.364"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+              </g>
+            </svg>
+          </div>
+        );
+
+      case "current_function_generator":
+        return (
+          <div className="relative" style={{ width: "100px", height: "100px" }}>
+            <svg
+              height="100"
+              viewBox="0 0 100 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M65.909,50C65.909,39.959,57.768,31.818,47.727,31.818C37.686,31.818,29.545,39.959,29.545,50C29.545,60.041,37.686,68.182,47.727,68.182C57.768,68.182,65.909,60.041,65.909,50"
+                  fill="#ffffff"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,13.636L47.727,31.818"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,86.364L47.727,68.182"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M45.182,59.042C46.773,61.446,46.773,62.167,47.727,65.773C48.682,62.167,48.682,61.446,50.273,59.042C48.364,59.523,47.091,59.523,45.182,59.042"
+                  fill={strokeColor}
+                  stroke="none"
+                />
+                <path
+                  d="M47.727,59.479L47.727,36.754"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="1.802"
+                />
+                <path
+                  d="M55.564,50C47.727,73.511,47.727,26.489,39.890,50"
+                  fill="none"
+                  stroke="#ffffff"
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="5"
+                />
+                <path
+                  d="M55.564,50C47.727,73.511,47.727,26.489,39.890,50"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="1.724"
+                />
+                <text
+                  fill={strokeColor}
+                  fontSize="11.64px"
+                  fontWeight="bold"
+                  textAnchor="start"
+                  x="70.455"
+                  y="50"
+                >
+                  <tspan dy="-8.727">
+                    {data.properties.label || "I2"}
+                  </tspan>
+                  <tspan dy="13.964" x="70.455">
+                    sine
+                  </tspan>
+                  <tspan dy="13.964" x="70.455">
+                    1 kHz
+                  </tspan>
+                </text>
+                {!isHandleConnected("top") && (
+                  <circle
+                    cx="47.727"
+                    cy="13.636"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+                {!isHandleConnected("bottom") && (
+                  <circle
+                    cx="47.727"
+                    cy="86.364"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+              </g>
+            </svg>
+          </div>
+        );
+
+      case "current_step":
+        return (
+          <div className="relative" style={{ width: "100px", height: "100px" }}>
+            <svg
+              height="100"
+              viewBox="0 0 100 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M65.909,50C65.909,39.959,57.768,31.818,47.727,31.818C37.686,31.818,29.545,39.959,29.545,50C29.545,60.041,37.686,68.182,47.727,68.182C57.768,68.182,65.909,60.041,65.909,50"
+                  fill="#ffffff"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,13.636L47.727,31.818"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,86.364L47.727,68.182"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M45.182,59.042C46.773,61.446,46.773,62.167,47.727,65.773C48.682,62.167,48.682,61.446,50.273,59.042C48.364,59.523,47.091,59.523,45.182,59.042"
+                  fill={strokeColor}
+                  stroke="none"
+                />
+                <path
+                  d="M47.727,59.479L47.727,36.754"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="1.802"
+                />
+                <path
+                  d="M58.636,46.364H47.727V53.636H36.818"
+                  fill="none"
+                  stroke="#ffffff"
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="10"
+                />
+                <path
+                  d="M58.636,46.364H47.727V53.636H36.818"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="1.724"
+                />
+                <text
+                  fill={strokeColor}
+                  fontSize="11.64px"
+                  fontWeight="bold"
+                  textAnchor="start"
+                  x="70.455"
+                  y="50"
+                >
+                  <tspan dy="-1.745">
+                    {data.properties.label || "I3"}
+                  </tspan>
+                  <tspan dy="13.964" x="70.455">
+                    0 s
+                  </tspan>
+                </text>
+                {!isHandleConnected("top") && (
+                  <circle
+                    cx="47.727"
+                    cy="13.636"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+                {!isHandleConnected("bottom") && (
+                  <circle
+                    cx="47.727"
+                    cy="86.364"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+              </g>
+            </svg>
+          </div>
+        );
+
+      case "csv_current_source":
+        return (
+          <div className="relative" style={{ width: "100px", height: "100px" }}>
+            <svg
+              height="100"
+              viewBox="0 0 100 100"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M65.909,50C65.909,39.959,57.768,31.818,47.727,31.818C37.686,31.818,29.545,39.959,29.545,50C29.545,60.041,37.686,68.182,47.727,68.182C57.768,68.182,65.909,60.041,65.909,50"
+                  fill="#ffffff"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,13.636L47.727,31.818"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M47.727,86.364L47.727,68.182"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M45.182,59.042C46.773,61.446,46.773,62.167,47.727,65.772C48.682,62.167,48.682,61.446,50.273,59.042C48.364,59.523,47.091,59.523,45.182,59.042"
+                  fill={strokeColor}
+                  stroke="none"
+                />
+                <path
+                  d="M47.727,60.469L47.727,56.409"
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeLinecap="round"
+                  strokeMiterlimit="6"
+                  strokeWidth="1.802"
+                />
+                <text
+                  fill={strokeColor}
+                  fontSize="13px"
+                  fontStyle="italic"
+                  fontWeight="bold"
+                  textAnchor="middle"
+                  x="47.727"
+                  y="54"
+                >
+                  CSV
+                </text>
+                <text
+                  fill={strokeColor}
+                  fontSize="11.64px"
+                  fontWeight="bold"
+                  textAnchor="start"
+                  x="70.455"
+                  y="50"
+                >
+                  <tspan dy="-1.745">
+                    {data.properties.label || "I4"}
+                  </tspan>
+                  <tspan dy="13.964" x="70.455">
+                    PWL
+                  </tspan>
+                </text>
+                {!isHandleConnected("top") && (
+                  <circle
+                    cx="47.727"
+                    cy="13.636"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+                {!isHandleConnected("bottom") && (
+                  <circle
+                    cx="47.727"
+                    cy="86.364"
+                    fill={strokeColor}
+                    r="3.636"
+                  />
+                )}
+              </g>
+            </svg>
+          </div>
+        );
+
       default:
         return null;
     }
@@ -540,12 +1335,16 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
           bottom: { x: 47.727, y: 86.364 },
         };
       case "voltage_source":
-        // SVG: width=90, height=90, viewBox="-5 -5 90 90"
-        // circle: cx=40,cy=0 -> 화면: (45, 5)
-        // circle: cx=40,cy=80 -> 화면: (45, 85)
+        // Voltage Source.svg: viewBox="0 0 100 100", circle at cx=47.727, cy=13.636 (top), cy=86.364 (bottom)
         return {
-          top: { x: 45, y: 5 },
-          bottom: { x: 45, y: 85 },
+          top: { x: 47.727, y: 13.636 },
+          bottom: { x: 47.727, y: 86.364 },
+        };
+      case "current_source":
+        // Current Source.svg: viewBox="0 0 100 100", circle at cx=47.727, cy=13.636 (top), cy=86.364 (bottom)
+        return {
+          top: { x: 47.727, y: 13.636 },
+          bottom: { x: 47.727, y: 86.364 },
         };
       case "inductor":
         // Inductor.svg: viewBox="0 0 100 100", circle at cx=48.864, cy=13.636 (top), cy=86.364 (bottom)
@@ -566,6 +1365,32 @@ const CircuitNode = memo(({ data, selected }: NodeProps<CircuitNodeData>) => {
           out: { x: 155, y: 80 },
           "v-plus": { x: 80, y: 30 },
           "v-minus": { x: 80, y: 130 },
+        };
+      case "ground":
+        // Ground.svg: viewBox="0 0 100 100", circle at cx=50, cy=18.889 (top only)
+        return {
+          top: { x: 50, y: 18.889 },
+        };
+      case "name_node":
+        // Name Node.svg: viewBox="0 0 100 100", circle at cx=15.186, cy=70.226 (bottom only)
+        return {
+          bottom: { x: 15.186, y: 70.226 },
+        };
+      case "csv_voltage_source":
+      case "voltage_function_generator":
+      case "voltage_step":
+        // 모두 Voltage Source와 동일한 구조: viewBox="0 0 100 100", circle at cx=47.727, cy=13.636 (top), cy=86.364 (bottom)
+        return {
+          top: { x: 47.727, y: 13.636 },
+          bottom: { x: 47.727, y: 86.364 },
+        };
+      case "current_function_generator":
+      case "current_step":
+      case "csv_current_source":
+        // 모두 Current Source와 동일한 구조: viewBox="0 0 100 100", circle at cx=47.727, cy=13.636 (top), cy=86.364 (bottom)
+        return {
+          top: { x: 47.727, y: 13.636 },
+          bottom: { x: 47.727, y: 86.364 },
         };
       default:
         return {};
